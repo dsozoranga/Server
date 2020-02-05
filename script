@@ -1,0 +1,65 @@
+alert("hola");
+
+// Create a client instance
+  //client = new Paho.MQTT.Client("postman.cloudmqtt.com", 14970);
+  
+  client = new Paho.MQTT.Client("tailor.cloudmqtt.com", 30150, "web_" + parseInt(Math.random() * 100, 10));
+
+  // set callback handlers
+  client.onConnectionLost = onConnectionLost;
+  client.onMessageArrived = onMessageArrived;
+  var options = {
+    useSSL: true,
+    userName: "lsivuczr",
+    password: "kO91SYr7olwS",
+    onSuccess:onConnect,
+    onFailure:doFail
+  }
+
+  // connect the client
+  client.connect(options);
+  topic="LED";
+  topic_rx="test";
+    topic_tx="test";
+  // called when the client connects
+  function onConnect() {
+    // Once a connection has been made, make a subscription and send a message.
+    console.log("onConnect");
+	
+    client.subscribe("test");
+    message = new Paho.MQTT.Message("ll:Hello: hola desde la web");
+    message.destinationName = topic_tx;;
+    
+	
+  }
+
+  function doFail(e){
+    console.log(e);
+	
+  }
+
+  // called when the client loses its connection
+  function onConnectionLost(responseObject) {
+    if (responseObject.errorCode !== 0) {
+      console.log("onConnectionLost:"+responseObject.errorMessage);
+    }
+  }
+
+  // called when a message arrives
+  function onMessageArrived(message) {
+    console.log("el mensaje fue:"+message.payloadString);
+  }
+  
+    // called when a message arrives
+  function sendMessage(msg) {
+    message = new Paho.MQTT.Message(msg);
+    message.destinationName = topic;
+    client.send(message);
+	
+  }
+
+    // called when a message arrives
+  function led() {
+	sendMessage('led')	
+  }
+ 
