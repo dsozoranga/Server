@@ -47,6 +47,9 @@ class myHandler(BaseHTTPRequestHandler):
 				sendReply = True
 			if self.path.endswith(".js"):
 				mimetype='application/javascript'
+				f=open(nombre)
+				datos=f.read()
+				f.close()
 				sendReply = True
 			if self.path.endswith(".css"):
 				mimetype='text/css'
