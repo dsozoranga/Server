@@ -51,7 +51,12 @@
 			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHRJoF5CpboeN3QngDPfj6qBJAa_twmU6jwTOSb8nXMXrvwnFOKw&s" width="150" height="150"/>
 			</div>
 	 </div>
-
+		<fieldset>
+			<legend><h2>Sistema de Iluminaci&oacute;n</h2></legend>
+			<p><h2 id="led_state">Estado del foco</h2></p>
+			<button id="led_ON" onclick="ledON()">Encender</button>
+			<button id="led_OFF" onclick="ledOFF()">Apagar</button>
+		</fieldset>
 		
 		<!-- mosquitto MQTT -------------------------------------------------------------------->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
